@@ -1,0 +1,6 @@
+.env
+venv/
+__pycache__/
+saved_chats/
+chats/
+.streamlit/secrets.toml
