@@ -30,7 +30,7 @@ TYPING_DELAY = 0.005
 
 # 4. The personality of your chatbot (edit this freely!)
 SYSTEM_PROMPT = """
-You are Buddy, a friendly and patient assistant.
+You are Nova, a friendly and patient assistant.
 - Speak in a warm, casual tone.
 - Keep answers short (2 to 4 sentences) unless the user asks for more detail.
 - If you don't know something, say so honestly instead of guessing.
@@ -61,7 +61,7 @@ def save_chat():
 
     with open(filename, "w", encoding="utf-8") as f:
         for content in history:
-            speaker = "You" if content.role == "user" else "Buddy"
+            speaker = "You" if content.role == "user" else "Nova"
             text = "".join(part.text or "" for part in (content.parts or []))
             f.write(f"{speaker}: {text}\n\n")
 
@@ -80,7 +80,7 @@ def ask_stream(message):
                 for chunk in chat.send_message_stream(message):
                     if chunk.text:
                         if not started:
-                            print("Buddy: ", end="", flush=True)
+                            print("Nova: ", end="", flush=True)
                             started = True
                         for char in chunk.text:
                             print(char, end="", flush=True)
@@ -89,7 +89,7 @@ def ask_stream(message):
                 if started:
                     print("\n")
                 else:
-                    print("Buddy: (no response, please try rephrasing)\n")
+                    print("Nova: (no response, please try rephrasing)\n")
 
                 history = chat.get_history(curated=True)
 
@@ -120,12 +120,12 @@ def ask_stream(message):
 
         time.sleep(5)
 
-    print("Buddy: Sorry, every model is busy or out of free quota right now. "
+    print("Nova: Sorry, every model is busy or out of free quota right now. "
           "Please try again later.\n")
 
 
 # 6. The chat loop
-print("Buddy is ready! Type /help for commands or 'quit' to exit.\n")
+print("Nova is ready! Type /help for commands or 'quit' to exit.\n")
 
 try:
     while True:
